@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatBot Imobiliário com IA | Capture mais leads automaticamente</title>
+    <meta name="description" content="Aumente suas vendas com um assistente virtual inteligente. Capture leads 24/7, qualifique clientes automaticamente e receba notificações por email.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #1a1f3d 0%, #2d3436 100%);
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #c9a227 0%, #f0d060 100%);
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="font-sans bg-white">
+    <!-- Header -->
+    <header class="bg-white shadow-sm fixed w-full z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 gold-gradient rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-bold text-gray-800">ImobBot</span>
+                </div>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#recursos" class="text-gray-600 hover:text-gray-900">Recursos</a>
+                    <a href="#precos" class="text-gray-600 hover:text-gray-900">Preços</a>
+                    <a href="#demo" class="text-gray-600 hover:text-gray-900">Demo</a>
+                    <a href="#contato" class="gold-gradient text-white px-6 py-2 rounded-full font-medium hover:opacity-90 transition">
+                        Começar Agora
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="gradient-bg pt-32 pb-20 overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2 text-white">
+                    <div class="inline-block bg-white/10 rounded-full px-4 py-2 text-sm mb-6">
+                        🚀 +300% mais leads capturados
+                    </div>
+                    <h1 class="text-4xl lg:text-5xl font-bold leading-tight mb-6">
+                        Capture leads <span class="text-yellow-400">24 horas por dia</span> com IA
+                    </h1>
+                    <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                        Seu assistente virtual inteligente que atende clientes, identifica se querem comprar, alugar ou vender, e captura todas as informações automaticamente.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#demo" class="gold-gradient text-center text-white px-8 py-4 rounded-full font-semibold text-lg hover:opacity-90 transition">
+                            Ver Demonstração
+                        </a>
+                        <a href="#precos" class="border-2 border-white text-center text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-gray-900 transition">
+                            Ver Preços
+                        </a>
+                    </div>
+                    <div class="flex items-center gap-6 mt-10">
+                        <div class="flex -space-x-2">
+                            <div class="w-10 h-10 rounded-full bg-yellow-400 border-2 border-white"></div>
+                            <div class="w-10 h-10 rounded-full bg-blue-400 border-2 border-white"></div>
+                            <div class="w-10 h-10 rounded-full bg-green-400 border-2 border-white"></div>
+                        </div>
+                        <p class="text-gray-300">
+                            <span class="font-semibold text-white">+50 imobiliárias</span> já usam
+                        </p>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 floating">
+                    <div class="bg-white rounded-2xl shadow-2xl p-4 max-w-sm mx-auto">
+                        <div class="bg-gray-800 rounded-xl p-4 text-white">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-gray-800" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">Sua Imobiliária</p>
+                                    <p class="text-xs text-green-400">● Online</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 space-y-3 bg-gray-50 rounded-b-xl">
+                            <div class="flex gap-2">
+                                <div class="w-8 h-8 bg-gray-800 rounded-full flex-shrink-0"></div>
+                                <div class="bg-white p-3 rounded-xl rounded-tl-none shadow-sm">
+                                    <p class="text-sm">Olá! Como posso ajudar? Você quer <strong>comprar</strong>, <strong>alugar</strong> ou <strong>vender</strong>?</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-2 justify-end">
+                                <div class="bg-gray-800 text-white p-3 rounded-xl rounded-tr-none">
+                                    <p class="text-sm">Quero comprar um apartamento</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <div class="w-8 h-8 bg-gray-800 rounded-full flex-shrink-0"></div>
+                                <div class="bg-white p-3 rounded-xl rounded-tl-none shadow-sm">
+                                    <p class="text-sm">Excelente! Qual seu orçamento e região de interesse?</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recursos -->
+    <section id="recursos" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                    Tudo que você precisa para vender mais
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Automatize o atendimento e nunca mais perca um lead
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition">
+                    <div class="w-14 h-14 gold-gradient rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Atendimento 24/7</h3>
+                    <p class="text-gray-600">IA inteligente que atende seus clientes a qualquer hora, mesmo de madrugada ou feriados.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition">
+                    <div class="w-14 h-14 gold-gradient rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Captura Automática</h3>
+                    <p class="text-gray-600">Coleta nome, email, orçamento e localização de forma natural durante a conversa.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition">
+                    <div class="w-14 h-14 gold-gradient rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Notificação Instantânea</h3>
+                    <p class="text-gray-600">Receba um email assim que um lead for capturado. Responda rápido e feche mais negócios.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition">
+                    <div class="w-14 h-14 gold-gradient rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Sua Marca</h3>
+                    <p class="text-gray-600">Personalize cores, logo e nome da empresa. O chat fica com a cara da sua imobiliária.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition">
+                    <div class="w-14 h-14 gold-gradient rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Fácil Instalação</h3>
+                    <p class="text-gray-600">Cole uma linha de código no seu site e pronto. Funciona em qualquer plataforma.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition">
+                    <div class="w-14 h-14 gold-gradient rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Painel de Leads</h3>
+                    <p class="text-gray-600">Visualize todos os leads em um painel bonito. Filtre por tipo de interesse.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Preços -->
+    <section id="precos" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                    Planos para todos os tamanhos
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Comece gratuitamente e faça upgrade quando precisar
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Básico -->
+                <div class="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:border-gray-300 transition">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Básico</h3>
+                    <p class="text-gray-600 mb-6">Para começar</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-gray-900">R$ 97</span>
+                        <span class="text-gray-600">/mês</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center gap-2 text-gray-600">
+                            <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            500 conversas/mês
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-600">
+                            <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Captura de leads
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-600">
+                            <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Notificação por email
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-600">
+                            <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Painel de leads
+                        </li>
+                    </ul>
+                    <button class="w-full py-3 border-2 border-gray-800 text-gray-800 rounded-full font-semibold hover:bg-gray-800 hover:text-white transition">
+                        Começar
+                    </button>
+                </div>
+
+                <!-- Pro (Destaque) -->
+                <div class="bg-gray-900 text-white rounded-2xl p-8 transform scale-105 shadow-xl">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-xl font-semibold">Pro</h3>
+                        <span class="bg-yellow-500 text-gray-900 text-xs font-bold px-3 py-1 rounded-full">POPULAR</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">Mais vendido</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">R$ 197</span>
+                        <span class="text-gray-400">/mês</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            2.000 conversas/mês
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Tudo do Básico
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Personalização completa
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Suporte prioritário
+                        </li>
+                    </ul>
+                    <button class="w-full py-3 gold-gradient text-gray-900 rounded-full font-semibold hover:opacity-90 transition">
+                        Começar
+                    </button>
+                </div>
+
+                <!-- Premium -->
+                <div class="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:border-gray-300 transition">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Premium</h3>
+                    <p class="text-gray-600 mb-6">Para grandes volumes</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-gray-900">R$ 497</span>
+                        <span class="text-gray-600">/mês</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center gap-2 text-gray-600">
+                            <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Conversas ilimitadas
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-600">
+                            <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Tudo do Pro
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-600">
+                            <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Integração WhatsApp
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-600">
+                            <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            API dedicada
+                        </li>
+                    </ul>
+                    <button class="w-full py-3 border-2 border-gray-800 text-gray-800 rounded-full font-semibold hover:bg-gray-800 hover:text-white transition">
+                        Começar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo -->
+    <section id="demo" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                    Teste agora mesmo
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Clique no botão de chat no canto inferior direito
+                </p>
+            </div>
+            <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-8">
+                <h3 class="text-xl font-semibold mb-4">Código para instalar no seu site:</h3>
+                <div class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto">
+                    <code class="text-sm">
+&lt;script src="https://SEU_DOMINIO/static/js/widget-embed.js"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data-company-name="Sua Imobiliária"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data-primary-color="#1a1f3d"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data-accent-color="#c9a227"&gt;<br>
+&lt;/script&gt;
+                    </code>
+                </div>
+                <p class="text-gray-600 mt-4 text-sm">
+                    Basta colar este código antes do &lt;/body&gt; do seu site e o chat aparece automaticamente!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section id="contato" class="py-20 gradient-bg">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl lg:text-4xl font-bold text-white mb-6">
+                Pronto para capturar mais leads?
+            </h2>
+            <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                Comece hoje mesmo e veja seus leads aumentarem. Instalação em 5 minutos.
+            </p>
+            <a href="mailto:contato@imobbot.com" class="inline-block gold-gradient text-gray-900 px-10 py-4 rounded-full font-semibold text-lg hover:opacity-90 transition">
+                Falar com Vendas
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                    <div class="w-8 h-8 gold-gradient rounded-lg flex items-center justify-center">
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+                        </svg>
+                    </div>
+                    <span class="font-semibold text-white">ImobBot</span>
+                </div>
+                <p class="text-sm">© 2024 ImobBot. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Widget de demonstração -->
+    <script src="/static/js/widget-embed.js"
+            data-company-name="ImobBot Demo"
+            data-primary-color="#1a1f3d"
+            data-accent-color="#c9a227">
+    </script>
+</body>
+</html>

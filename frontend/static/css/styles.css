@@ -1,0 +1,179 @@
+/* London Property Agent - Custom Styles */
+
+/* Scrollbar Styling */
+#chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+#chat-messages::-webkit-scrollbar-track {
+    background: #f5f3ef;
+}
+
+#chat-messages::-webkit-scrollbar-thumb {
+    background: #c9a227;
+    border-radius: 3px;
+}
+
+#chat-messages::-webkit-scrollbar-thumb:hover {
+    background: #a88a1f;
+}
+
+/* Chat Window Animation */
+#chat-window {
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Message Animation */
+.chat-message {
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Typing Indicator */
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 16px;
+    background: white;
+    border-radius: 16px;
+    border-top-left-radius: 0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.typing-indicator span {
+    width: 8px;
+    height: 8px;
+    background: #c9a227;
+    border-radius: 50%;
+    animation: bounce 1.4s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+    0%, 80%, 100% {
+        transform: scale(0.6);
+        opacity: 0.5;
+    }
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Button Hover Effects */
+#chat-toggle {
+    box-shadow: 0 4px 20px rgba(26, 31, 61, 0.3);
+}
+
+#chat-toggle:hover {
+    box-shadow: 0 6px 25px rgba(26, 31, 61, 0.4);
+}
+
+/* Focus States */
+#chat-input:focus {
+    box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.2);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 640px) {
+    #chat-window {
+        width: calc(100vw - 1.5rem);
+        right: -0.75rem;
+        bottom: 4.5rem;
+    }
+
+    #chat-messages {
+        height: 60vh;
+    }
+}
+
+/* Pulse Animation for Chat Button */
+#chat-toggle::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(201, 162, 39, 0.4);
+    animation: pulse 2s ease-out infinite;
+    z-index: -1;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* User Message Style */
+.user-message {
+    background: linear-gradient(135deg, #1a1f3d 0%, #2d3436 100%);
+    color: white;
+}
+
+/* Bot Message Style */
+.bot-message {
+    background: white;
+    color: #2d3436;
+}
+
+/* Success Notification */
+#lead-notification {
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Smooth transitions */
+* {
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
