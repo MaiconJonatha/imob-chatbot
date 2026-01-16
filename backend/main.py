@@ -21,7 +21,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, HTMLResponse
 from pydantic import BaseModel
-import google.generativeai as genai
+import httpx
 
 # Configuração
 DATA_DIR = Path(__file__).parent.parent / "data"
@@ -30,8 +30,9 @@ CSV_FILE = DATA_DIR / "leads_imobiliaria.csv"
 # Garantir que o diretório de dados existe
 DATA_DIR.mkdir(exist_ok=True)
 
-# Configurar Gemini
-genai.configure(api_key=os.environ.get("GOOGLE_API_KEY"))
+# API Key do Gemini
+GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY", "").strip()
+GEMINI_API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={GOOGLE_API_KEY}"
 
 # Configuração de email (opcional)
 EMAIL_CONFIG = {
@@ -223,11 +224,32 @@ IMPORTANTE:
 - Valide se o postcode segue o padrão UK
 """
 
-# Modelo Gemini
-model = genai.GenerativeModel(
-    model_name="gemini-2.0-flash",
-    system_instruction=SYSTEM_PROMPT
-)
+async def call_gemini_api(messages: list) -> str:
+    """Chama a API do Gemini via REST"""
+    payload = {
+        "contents": messages,
+        "systemInstruction": {
+            "parts": [{"text": SYSTEM_PROMPT}]
+        },
+        "generationConfig": {
+            "temperature": 0.7,
+            "maxOutputTokens": 1024
+        }
+    }
+
+    async with httpx.AsyncClient(timeout=30.0) as client:
+        response = await client.post(
+            GEMINI_API_URL,
+            json=payload,
+            headers={"Content-Type": "application/json"}
+        )
+
+        if response.status_code != 200:
+            print(f"[ERROR] Gemini API error: {response.status_code} - {response.text}")
+            raise HTTPException(status_code=500, detail=f"Gemini API error: {response.status_code}")
+
+        data = response.json()
+        return data["candidates"][0]["content"]["parts"][0]["text"]
 
 
 class ChatMessage(BaseModel):
@@ -310,25 +332,27 @@ def save_lead_to_csv(lead_data: dict, email_valid: bool, postcode_valid: bool):
 async def chat(chat_message: ChatMessage):
     """Endpoint principal do chat com o agente"""
     try:
-        # Construir histórico para o Gemini
-        history = []
+        # Construir histórico para o Gemini (formato REST API)
+        contents = []
 
         for msg in chat_message.conversation_history:
             role = "user" if msg["role"] == "user" else "model"
-            history.append({
+            contents.append({
                 "role": role,
-                "parts": [msg["content"]]
+                "parts": [{"text": msg["content"]}]
             })
 
+        # Adicionar mensagem atual
+        contents.append({
+            "role": "user",
+            "parts": [{"text": chat_message.message}]
+        })
+
         print(f"[DEBUG] Enviando mensagem para Gemini: {chat_message.message}")
-        print(f"[DEBUG] Histórico: {len(history)} mensagens")
+        print(f"[DEBUG] Histórico: {len(contents)} mensagens")
 
-        # Criar chat com histórico
-        chat_session = model.start_chat(history=history)
-
-        # Enviar mensagem
-        response = chat_session.send_message(chat_message.message)
-        response_text = response.text
+        # Chamar API REST do Gemini
+        response_text = await call_gemini_api(contents)
 
         print(f"[DEBUG] Resposta recebida do Gemini")
 
