@@ -23,7 +23,7 @@
         accentColor: scriptTag?.getAttribute('data-accent-color') || '#c9a227',
         position: scriptTag?.getAttribute('data-position') || 'right', // 'left' ou 'right'
         agentName: scriptTag?.getAttribute('data-agent-name') || 'Sophie',
-        agentPhoto: scriptTag?.getAttribute('data-agent-photo') || 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face',
+        agentPhoto: scriptTag?.getAttribute('data-agent-photo') || 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=200&h=200&fit=crop&crop=face&facepad=2.5',
         welcomeMessage: scriptTag?.getAttribute('data-welcome-message') ||
             'Hello! Welcome to PropertyBot. I\'m Sophie, your virtual assistant. How may I help you today? Are you interested in <strong>buying</strong>, <strong>renting</strong> or <strong>selling</strong> a property?'
     };
