@@ -140,7 +140,7 @@ class PropertyChatWidget {
         } else {
             messageDiv.innerHTML = `
                 <div class="message-avatar">
-                    <img src="/static/images/sophie-avatar.jpg"
+                    <img src="/static/images/sophie-avatar.png"
                          alt="Sophie">
                 </div>
                 <div class="bot-message rounded-2xl rounded-tl-none p-3 shadow-sm max-w-[80%]">
@@ -159,7 +159,7 @@ class PropertyChatWidget {
         typingDiv.className = 'flex items-start space-x-3';
         typingDiv.innerHTML = `
             <div class="message-avatar">
-                <img src="/static/images/sophie-avatar.jpg"
+                <img src="/static/images/sophie-avatar.png"
                      alt="Sophie">
             </div>
             <div class="typing-indicator">
