@@ -569,13 +569,14 @@ ADMIN_HTML = """
                     const postcodeValid = lead.postcode_valido === 'Sim';
 
                     const whatsappLink = lead.whatsapp ? `<a href="https://wa.me/55${lead.whatsapp.replace(/\\D/g,'')}" target="_blank" class="text-green-600 hover:underline">${lead.whatsapp}</a>` : '-';
+                    const emailLink = lead.email ? `<a href="mailto:${lead.email}" class="text-blue-600 hover:underline">${lead.email}</a>` : '-';
 
                     return `
                         <tr class="hover:bg-gray-50">
                             <td class="px-6 py-4 text-sm text-london-charcoal">${date}</td>
                             <td class="px-6 py-4 text-sm font-medium text-london-charcoal">${lead.nome || '-'}</td>
                             <td class="px-6 py-4 text-sm text-london-charcoal">${whatsappLink}</td>
-                            <td class="px-6 py-4 text-sm text-london-charcoal">${lead.email || '-'}</td>
+                            <td class="px-6 py-4 text-sm text-london-charcoal">${emailLink}</td>
                             <td class="px-6 py-4">
                                 <span class="px-2 py-1 text-xs rounded-full ${interestColor}">
                                     ${lead.tipo_interesse || '-'}
