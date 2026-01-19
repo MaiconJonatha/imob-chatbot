@@ -194,8 +194,8 @@
         }
 
         .lpa-message-avatar {
-            width: 60px;
-            height: 60px;
+            width: 75px;
+            height: 75px;
             border-radius: 50%;
             display: flex;
             align-items: center;
