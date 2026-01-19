@@ -139,10 +139,8 @@ class PropertyChatWidget {
             `;
         } else {
             messageDiv.innerHTML = `
-                <div class="w-8 h-8 bg-london-navy rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg class="w-4 h-4 text-london-gold" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
-                    </svg>
+                <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-london-gold flex-shrink-0">
+                    <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=400&h=400&fit=crop&crop=face&facepad=2" alt="Sophie" class="w-full h-full object-cover">
                 </div>
                 <div class="bot-message rounded-2xl rounded-tl-none p-3 shadow-sm max-w-[80%]">
                     <p class="text-sm text-london-charcoal">${this.formatMessage(content)}</p>
@@ -159,10 +157,8 @@ class PropertyChatWidget {
         typingDiv.id = 'typing-indicator';
         typingDiv.className = 'flex items-start space-x-2';
         typingDiv.innerHTML = `
-            <div class="w-8 h-8 bg-london-navy rounded-full flex items-center justify-center flex-shrink-0">
-                <svg class="w-4 h-4 text-london-gold" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
-                </svg>
+            <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-london-gold flex-shrink-0">
+                <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=400&h=400&fit=crop&crop=face&facepad=2" alt="Sophie" class="w-full h-full object-cover">
             </div>
             <div class="typing-indicator">
                 <span></span>
