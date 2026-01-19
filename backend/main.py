@@ -327,8 +327,8 @@ def save_lead_to_csv(lead_data: dict, email_valid: bool, postcode_valid: bool):
             lead_data.get("orcamento", ""),
             lead_data.get("postcode", ""),
             lead_data.get("detalhes_adicionais", ""),
-            "Sim" if email_valid else "Não",
-            "Sim" if postcode_valid else "Não"
+            "Yes" if email_valid else "No",
+            "Yes" if postcode_valid else "No"
         ])
 
 
@@ -551,7 +551,7 @@ ADMIN_HTML = """
                 }
 
                 tbody.innerHTML = data.leads.reverse().map(lead => {
-                    const date = new Date(lead.timestamp).toLocaleDateString('pt-BR', {
+                    const date = new Date(lead.timestamp).toLocaleDateString('en-GB', {
                         day: '2-digit',
                         month: '2-digit',
                         year: 'numeric',
@@ -565,8 +565,8 @@ ADMIN_HTML = """
                         'sell': 'bg-purple-100 text-purple-800'
                     }[lead.tipo_interesse?.toLowerCase()] || 'bg-gray-100 text-gray-800';
 
-                    const emailValid = lead.email_valido === 'Sim';
-                    const postcodeValid = lead.postcode_valido === 'Sim';
+                    const emailValid = lead.email_valido === 'Yes';
+                    const postcodeValid = lead.postcode_valido === 'Yes';
 
                     const interestText = {'buy': 'buying', 'rent': 'renting', 'sell': 'selling'}[lead.tipo_interesse?.toLowerCase()] || 'property';
                     const whatsappMsg = encodeURIComponent(`Hello ${lead.nome}! I hope you're well. I noticed you're interested in ${interestText} in the ${lead.postcode || 'London'} area. I'm Sophie from PropertyBot and would love to assist you. Would you be available for a quick chat?`);
