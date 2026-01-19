@@ -22,8 +22,10 @@
         primaryColor: scriptTag?.getAttribute('data-primary-color') || '#1a1f3d',
         accentColor: scriptTag?.getAttribute('data-accent-color') || '#c9a227',
         position: scriptTag?.getAttribute('data-position') || 'right', // 'left' ou 'right'
+        agentName: scriptTag?.getAttribute('data-agent-name') || 'Sophie',
+        agentPhoto: scriptTag?.getAttribute('data-agent-photo') || 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=150&h=150&fit=crop&crop=face',
         welcomeMessage: scriptTag?.getAttribute('data-welcome-message') ||
-            'Olá! Bem-vindo. Sou seu assistente virtual especializado no mercado imobiliário. Como posso ajudá-lo hoje? Você está interessado em <strong>comprar</strong>, <strong>alugar</strong> ou <strong>vender</strong> um imóvel?'
+            'Hello! Welcome to PropertyBot. I\'m Sophie, your virtual assistant. How may I help you today? Are you interested in <strong>buying</strong>, <strong>renting</strong> or <strong>selling</strong> a property?'
     };
 
     // CSS do Widget
@@ -116,19 +118,18 @@
         }
 
         #lpa-chat-header-icon {
-            width: 40px;
-            height: 40px;
-            background: ${config.accentColor};
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            overflow: hidden;
+            border: 2px solid ${config.accentColor};
+            flex-shrink: 0;
         }
 
-        #lpa-chat-header-icon svg {
-            width: 20px;
-            height: 20px;
-            fill: ${config.primaryColor};
+        #lpa-chat-header-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         #lpa-chat-header-text h4 {
@@ -200,10 +201,17 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            overflow: hidden;
         }
 
         .lpa-message.lpa-bot .lpa-message-avatar {
-            background: ${config.primaryColor};
+            border: 2px solid ${config.accentColor};
+        }
+
+        .lpa-message.lpa-bot .lpa-message-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .lpa-message.lpa-user .lpa-message-avatar {
@@ -213,10 +221,6 @@
         .lpa-message-avatar svg {
             width: 16px;
             height: 16px;
-        }
-
-        .lpa-message.lpa-bot .lpa-message-avatar svg {
-            fill: ${config.accentColor};
         }
 
         .lpa-message.lpa-user .lpa-message-avatar svg {
@@ -351,7 +355,7 @@
     // HTML do Widget
     const widgetHTML = `
         <div id="lpa-widget-container">
-            <button id="lpa-chat-toggle" aria-label="Abrir chat">
+            <button id="lpa-chat-toggle" aria-label="Open chat">
                 <svg id="lpa-icon-chat" viewBox="0 0 24 24">
                     <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
                 </svg>
@@ -363,15 +367,13 @@
             <div id="lpa-chat-window">
                 <div id="lpa-chat-header">
                     <div id="lpa-chat-header-icon">
-                        <svg viewBox="0 0 20 20">
-                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
-                        </svg>
+                        <img src="${config.agentPhoto}" alt="${config.agentName}">
                     </div>
                     <div id="lpa-chat-header-text">
-                        <h4>${config.companyName}</h4>
-                        <p>Online agora</p>
+                        <h4>${config.agentName}</h4>
+                        <p>Online now</p>
                     </div>
-                    <button id="lpa-chat-close" aria-label="Fechar chat">
+                    <button id="lpa-chat-close" aria-label="Close chat">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
                         </svg>
@@ -381,9 +383,7 @@
                 <div id="lpa-chat-messages">
                     <div class="lpa-message lpa-bot">
                         <div class="lpa-message-avatar">
-                            <svg viewBox="0 0 20 20">
-                                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
-                            </svg>
+                            <img src="${config.agentPhoto}" alt="${config.agentName}">
                         </div>
                         <div class="lpa-message-content">${config.welcomeMessage}</div>
                     </div>
@@ -393,12 +393,12 @@
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="#155724">
                         <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                     </svg>
-                    <span>Seus dados foram registrados! Entraremos em contato em breve.</span>
+                    <span>Your details have been registered! We shall be in touch shortly.</span>
                 </div>
 
                 <div id="lpa-chat-input-area">
-                    <input type="text" id="lpa-chat-input" placeholder="Digite sua mensagem..." autocomplete="off">
-                    <button id="lpa-chat-send" aria-label="Enviar mensagem">
+                    <input type="text" id="lpa-chat-input" placeholder="Type your message..." autocomplete="off">
+                    <button id="lpa-chat-send" aria-label="Send message">
                         <svg viewBox="0 0 24 24">
                             <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
                         </svg>
@@ -494,7 +494,7 @@
                 }
             } catch (error) {
                 this.hideTyping();
-                this.addMessage('Desculpe, ocorreu um erro. Tente novamente.', 'bot');
+                this.addMessage('I do apologise, an error occurred. Please try again.', 'bot');
             }
 
             this.isLoading = false;
@@ -504,13 +504,13 @@
             const div = document.createElement('div');
             div.className = `lpa-message lpa-${sender}`;
 
-            const icon = sender === 'bot'
-                ? '<path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>'
-                : '<path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>';
+            const avatarContent = sender === 'bot'
+                ? `<img src="${config.agentPhoto}" alt="${config.agentName}">`
+                : '<svg viewBox="0 0 20 20"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/></svg>';
 
             div.innerHTML = `
                 <div class="lpa-message-avatar">
-                    <svg viewBox="0 0 20 20">${icon}</svg>
+                    ${avatarContent}
                 </div>
                 <div class="lpa-message-content">${this.formatMessage(content)}</div>
             `;
@@ -534,9 +534,7 @@
             div.className = 'lpa-message lpa-bot';
             div.innerHTML = `
                 <div class="lpa-message-avatar">
-                    <svg viewBox="0 0 20 20">
-                        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
-                    </svg>
+                    <img src="${config.agentPhoto}" alt="${config.agentName}">
                 </div>
                 <div class="lpa-typing"><span></span><span></span><span></span></div>
             `;

@@ -162,8 +162,8 @@ app.add_middleware(
 )
 
 # Sistema de prompts para o agente
-SYSTEM_PROMPT = """You are a professional and elegant virtual estate agent, specialising in the London property market.
-Your name is "London Property Assistant" and you work for a premium agency.
+SYSTEM_PROMPT = """You are a professional and elegant virtual estate agent called Sophie, specialising in the London property market.
+You work for PropertyBot, a premium AI-powered estate agency.
 
 PERSONALITY:
 - Professional, courteous and sophisticated
@@ -414,7 +414,7 @@ async def get_leads():
 @app.get("/api/health")
 async def health_check():
     """Verificação de saúde da API"""
-    return {"status": "healthy", "service": "London Property Agent"}
+    return {"status": "healthy", "service": "PropertyBot"}
 
 
 # Painel Admin HTML
@@ -424,7 +424,7 @@ ADMIN_HTML = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - London Property Agent</title>
+    <title>Admin - PropertyBot</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script>
@@ -461,7 +461,7 @@ ADMIN_HTML = """
                         </svg>
                     </div>
                     <div>
-                        <h1 class="font-serif text-xl font-semibold">London Property</h1>
+                        <h1 class="font-serif text-xl font-semibold">PropertyBot</h1>
                         <p class="text-london-gold text-xs tracking-widest uppercase">Leads Dashboard</p>
                     </div>
                 </div>
@@ -569,11 +569,11 @@ ADMIN_HTML = """
                     const postcodeValid = lead.postcode_valido === 'Sim';
 
                     const interestText = {'buy': 'buying', 'rent': 'renting', 'sell': 'selling'}[lead.tipo_interesse?.toLowerCase()] || 'property';
-                    const whatsappMsg = encodeURIComponent(`Hello ${lead.nome}! I hope you're well. I noticed you're interested in ${interestText} in the ${lead.postcode || 'London'} area. I'm from the property team and would love to assist you. Would you be available for a quick chat?`);
+                    const whatsappMsg = encodeURIComponent(`Hello ${lead.nome}! I hope you're well. I noticed you're interested in ${interestText} in the ${lead.postcode || 'London'} area. I'm Sophie from PropertyBot and would love to assist you. Would you be available for a quick chat?`);
                     const whatsappLink = lead.whatsapp ? `<a href="https://wa.me/44${lead.whatsapp.replace(/\\D/g,'').replace(/^0/,'')}" target="_blank" class="text-green-600 hover:underline">${lead.whatsapp}</a>` : '-';
 
-                    const emailSubject = encodeURIComponent(`Your ${interestText} enquiry - London Property`);
-                    const emailBody = encodeURIComponent(`Dear ${lead.nome},\n\nI hope this email finds you well.\n\nI noticed you expressed interest in ${interestText} in the ${lead.postcode || 'London'} area with a budget of ${lead.orcamento || 'to be confirmed'}.\n\nI would be delighted to arrange a call to discuss your requirements and present our best options.\n\nWhen would be a convenient time for a chat?\n\nKind regards,\nLondon Property Team`);
+                    const emailSubject = encodeURIComponent(`Your ${interestText} enquiry - PropertyBot`);
+                    const emailBody = encodeURIComponent(`Dear ${lead.nome},\n\nI hope this email finds you well.\n\nI noticed you expressed interest in ${interestText} in the ${lead.postcode || 'London'} area with a budget of ${lead.orcamento || 'to be confirmed'}.\n\nI would be delighted to arrange a call to discuss your requirements and present our best options.\n\nWhen would be a convenient time for a chat?\n\nKind regards,\nSophie\nPropertyBot Team`);
                     const emailLink = lead.email ? `<a href="mailto:${lead.email}?subject=${emailSubject}&body=${emailBody}" class="text-red-600 hover:underline">${lead.email}</a>` : '-';
 
                     return `
