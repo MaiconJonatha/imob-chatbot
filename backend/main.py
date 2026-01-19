@@ -569,7 +569,7 @@ ADMIN_HTML = """
                     const postcodeValid = lead.postcode_valido === 'Sim';
 
                     const whatsappLink = lead.whatsapp ? `<a href="https://wa.me/55${lead.whatsapp.replace(/\\D/g,'')}" target="_blank" class="text-green-600 hover:underline">${lead.whatsapp}</a>` : '-';
-                    const emailLink = lead.email ? `<a href="mailto:${lead.email}" class="text-blue-600 hover:underline">${lead.email}</a>` : '-';
+                    const emailLink = lead.email ? `<a href="mailto:${lead.email}" class="text-red-600 hover:underline">${lead.email}</a>` : '-';
 
                     return `
                         <tr class="hover:bg-gray-50">
