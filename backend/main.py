@@ -568,8 +568,12 @@ ADMIN_HTML = """
                     const emailValid = lead.email_valido === 'Sim';
                     const postcodeValid = lead.postcode_valido === 'Sim';
 
-                    const whatsappLink = lead.whatsapp ? `<a href="https://wa.me/55${lead.whatsapp.replace(/\\D/g,'')}" target="_blank" class="text-green-600 hover:underline">${lead.whatsapp}</a>` : '-';
-                    const emailLink = lead.email ? `<a href="mailto:${lead.email}" class="text-red-600 hover:underline">${lead.email}</a>` : '-';
+                    const whatsappMsg = encodeURIComponent(`Olá ${lead.nome}! Tudo bem? Vi que você tem interesse em ${lead.tipo_interesse || 'imóveis'} na região de ${lead.postcode || 'Londres'}. Sou da equipe de atendimento e gostaria de ajudá-lo. Podemos conversar?`);
+                    const whatsappLink = lead.whatsapp ? `<a href="https://wa.me/55${lead.whatsapp.replace(/\\D/g,'')}?text=${whatsappMsg}" target="_blank" class="text-green-600 hover:underline">${lead.whatsapp}</a>` : '-';
+
+                    const emailSubject = encodeURIComponent(`Seu interesse em ${lead.tipo_interesse || 'imóveis'} - London Property`);
+                    const emailBody = encodeURIComponent(`Olá ${lead.nome},\n\nTudo bem?\n\nVi que você demonstrou interesse em ${lead.tipo_interesse || 'imóveis'} na região de ${lead.postcode || 'Londres'} com orçamento de ${lead.orcamento || 'a definir'}.\n\nGostaria de agendar uma conversa para entender melhor suas necessidades e apresentar as melhores opções.\n\nQuando seria um bom momento para conversarmos?\n\nAtenciosamente,\nEquipe London Property`);
+                    const emailLink = lead.email ? `<a href="mailto:${lead.email}?subject=${emailSubject}&body=${emailBody}" class="text-red-600 hover:underline">${lead.email}</a>` : '-';
 
                     return `
                         <tr class="hover:bg-gray-50">
