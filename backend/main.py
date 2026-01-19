@@ -58,25 +58,25 @@ def validate_uk_postcode(postcode: str) -> bool:
 
 
 def send_email_notification(lead_data: dict):
-    """Envia notificação por email quando um lead é capturado"""
+    """Send email notification when a lead is captured"""
     if not EMAIL_CONFIG["sender_email"] or not EMAIL_CONFIG["recipient_email"]:
-        print("[INFO] Email não configurado, pulando notificação")
+        print("[INFO] Email not configured, skipping notification")
         return False
 
     try:
         msg = MIMEMultipart()
         msg['From'] = EMAIL_CONFIG["sender_email"]
         msg['To'] = EMAIL_CONFIG["recipient_email"]
-        msg['Subject'] = f"🏠 Novo Lead Capturado - {lead_data.get('tipo_interesse', 'N/A').upper()}"
+        msg['Subject'] = f"🏠 New Lead Captured - {lead_data.get('tipo_interesse', 'N/A').upper()}"
 
         body = f"""
         <html>
         <body style="font-family: Arial, sans-serif; padding: 20px;">
-            <h2 style="color: #1a1f3d;">🏠 Novo Lead Imobiliário</h2>
+            <h2 style="color: #1a1f3d;">🏠 New Property Lead</h2>
             <hr style="border: 1px solid #c9a227;">
             <table style="width: 100%; border-collapse: collapse;">
                 <tr>
-                    <td style="padding: 10px; font-weight: bold;">Nome:</td>
+                    <td style="padding: 10px; font-weight: bold;">Name:</td>
                     <td style="padding: 10px;">{lead_data.get('nome', 'N/A')}</td>
                 </tr>
                 <tr style="background: #f5f3ef;">
@@ -84,11 +84,11 @@ def send_email_notification(lead_data: dict):
                     <td style="padding: 10px;">{lead_data.get('email', 'N/A')}</td>
                 </tr>
                 <tr>
-                    <td style="padding: 10px; font-weight: bold;">Interesse:</td>
+                    <td style="padding: 10px; font-weight: bold;">Interest:</td>
                     <td style="padding: 10px;">{lead_data.get('tipo_interesse', 'N/A').upper()}</td>
                 </tr>
                 <tr style="background: #f5f3ef;">
-                    <td style="padding: 10px; font-weight: bold;">Orçamento:</td>
+                    <td style="padding: 10px; font-weight: bold;">Budget:</td>
                     <td style="padding: 10px;">{lead_data.get('orcamento', 'N/A')}</td>
                 </tr>
                 <tr>
@@ -96,13 +96,13 @@ def send_email_notification(lead_data: dict):
                     <td style="padding: 10px;">{lead_data.get('postcode', 'N/A')}</td>
                 </tr>
                 <tr style="background: #f5f3ef;">
-                    <td style="padding: 10px; font-weight: bold;">Detalhes:</td>
+                    <td style="padding: 10px; font-weight: bold;">Details:</td>
                     <td style="padding: 10px;">{lead_data.get('detalhes_adicionais', 'N/A')}</td>
                 </tr>
             </table>
             <hr style="border: 1px solid #c9a227;">
             <p style="color: #666; font-size: 12px;">
-                Capturado em: {datetime.now().strftime('%d/%m/%Y às %H:%M')}
+                Captured on: {datetime.now().strftime('%d/%m/%Y at %H:%M')}
             </p>
         </body>
         </html>
@@ -116,10 +116,10 @@ def send_email_notification(lead_data: dict):
         server.send_message(msg)
         server.quit()
 
-        print("[INFO] Email de notificação enviado com sucesso")
+        print("[INFO] Notification email sent successfully")
         return True
     except Exception as e:
-        print(f"[ERROR] Erro ao enviar email: {str(e)}")
+        print(f"[ERROR] Failed to send email: {str(e)}")
         return False
 
 
@@ -300,16 +300,16 @@ def clean_response(response_text: str) -> str:
 
 
 def validate_lead_data(lead_data: dict) -> tuple[bool, list]:
-    """Valida os dados do lead e retorna erros"""
+    """Validate lead data and return errors"""
     errors = []
 
     email = lead_data.get("email", "")
     if not validate_email(email):
-        errors.append(f"Email inválido: {email}")
+        errors.append(f"Invalid email: {email}")
 
     postcode = lead_data.get("postcode", "")
     if not validate_uk_postcode(postcode):
-        errors.append(f"Postcode inválido: {postcode} (formato esperado: SW1A 1AA)")
+        errors.append(f"Invalid postcode: {postcode} (expected format: SW1A 1AA)")
 
     return len(errors) == 0, errors
 
