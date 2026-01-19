@@ -133,6 +133,7 @@ async def lifespan(app: FastAPI):
             writer.writerow([
                 "timestamp",
                 "nome",
+                "whatsapp",
                 "email",
                 "tipo_interesse",
                 "orcamento",
@@ -181,16 +182,17 @@ VOCÊ DEVE IDENTIFICAR:
 
 INFORMAÇÕES OBRIGATÓRIAS A CAPTURAR:
 1. Nome completo
-2. E-mail (deve ser um email válido)
-3. Orçamento em libras (£) - para compra/aluguel ou valor estimado para venda
-4. Código Postal (Postcode) de interesse ou do imóvel (formato UK: SW1A 1AA, E14 5AB, etc.)
+2. WhatsApp (número com DDD, ex: 11999998888)
+3. E-mail (deve ser um email válido)
+4. Orçamento em libras (£) - para compra/aluguel ou valor estimado para venda
+5. Código Postal (Postcode) de interesse ou do imóvel (formato UK: SW1A 1AA, E14 5AB, etc.)
 
 ESTRATÉGIA DE CONVERSA:
 1. Cumprimente calorosamente e pergunte como pode ajudar
 2. Identifique se o cliente quer COMPRAR, ALUGAR ou VENDER
 3. Capture as informações de forma natural e conversacional
 4. Forneça informações úteis sobre as áreas de Londres mencionadas
-5. Quando tiver TODAS as 4 informações, confirme os dados
+5. Quando tiver TODAS as 5 informações, confirme os dados
 
 ÁREAS DE LONDRES QUE VOCÊ CONHECE BEM:
 - Central: Mayfair, Kensington, Chelsea, Westminster, Knightsbridge
@@ -200,12 +202,13 @@ ESTRATÉGIA DE CONVERSA:
 - Oeste: Notting Hill, Chiswick, Ealing
 
 FORMATO DE RESPOSTA ESPECIAL:
-Quando você tiver coletado TODAS as 4 informações obrigatórias (nome, email, orçamento, postcode),
+Quando você tiver coletado TODAS as 5 informações obrigatórias (nome, whatsapp, email, orçamento, postcode),
 inclua no FINAL da sua resposta um bloco JSON no seguinte formato:
 
 [LEAD_DATA]
 {
     "nome": "Nome do Cliente",
+    "whatsapp": "11999998888",
     "email": "email@exemplo.com",
     "tipo_interesse": "comprar|alugar|vender",
     "orcamento": "valor em £",
@@ -318,6 +321,7 @@ def save_lead_to_csv(lead_data: dict, email_valid: bool, postcode_valid: bool):
         writer.writerow([
             datetime.now().isoformat(),
             lead_data.get("nome", ""),
+            lead_data.get("whatsapp", ""),
             lead_data.get("email", ""),
             lead_data.get("tipo_interesse", ""),
             lead_data.get("orcamento", ""),
@@ -503,6 +507,7 @@ ADMIN_HTML = """
                         <tr>
                             <th class="px-6 py-3 text-left text-xs font-medium text-london-slate uppercase tracking-wider">Data</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-london-slate uppercase tracking-wider">Nome</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-london-slate uppercase tracking-wider">WhatsApp</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-london-slate uppercase tracking-wider">Email</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-london-slate uppercase tracking-wider">Interesse</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-london-slate uppercase tracking-wider">Orçamento</th>
@@ -512,7 +517,7 @@ ADMIN_HTML = """
                     </thead>
                     <tbody id="leads-table" class="divide-y divide-gray-100">
                         <tr>
-                            <td colspan="7" class="px-6 py-8 text-center text-london-slate">Carregando...</td>
+                            <td colspan="8" class="px-6 py-8 text-center text-london-slate">Carregando...</td>
                         </tr>
                     </tbody>
                 </table>
@@ -541,7 +546,7 @@ ADMIN_HTML = """
                 const tbody = document.getElementById('leads-table');
 
                 if (data.leads.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="7" class="px-6 py-8 text-center text-london-slate">Nenhum lead capturado ainda</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="8" class="px-6 py-8 text-center text-london-slate">Nenhum lead capturado ainda</td></tr>';
                     return;
                 }
 
@@ -563,10 +568,13 @@ ADMIN_HTML = """
                     const emailValid = lead.email_valido === 'Sim';
                     const postcodeValid = lead.postcode_valido === 'Sim';
 
+                    const whatsappLink = lead.whatsapp ? `<a href="https://wa.me/55${lead.whatsapp.replace(/\\D/g,'')}" target="_blank" class="text-green-600 hover:underline">${lead.whatsapp}</a>` : '-';
+
                     return `
                         <tr class="hover:bg-gray-50">
                             <td class="px-6 py-4 text-sm text-london-charcoal">${date}</td>
                             <td class="px-6 py-4 text-sm font-medium text-london-charcoal">${lead.nome || '-'}</td>
+                            <td class="px-6 py-4 text-sm text-london-charcoal">${whatsappLink}</td>
                             <td class="px-6 py-4 text-sm text-london-charcoal">${lead.email || '-'}</td>
                             <td class="px-6 py-4">
                                 <span class="px-2 py-1 text-xs rounded-full ${interestColor}">
