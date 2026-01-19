@@ -177,3 +177,269 @@
     transition-duration: 150ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* ========================================
+   Avatar Profissional - Sophie
+   ======================================== */
+
+/* Container Principal do Avatar */
+.avatar-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Avatar Base */
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #c9a227;
+    box-shadow: 0 2px 8px rgba(26, 31, 61, 0.15);
+    transition: all 0.3s ease;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+/* Tamanhos de Avatar */
+.avatar--sm {
+    width: 32px;
+    height: 32px;
+    border-width: 1.5px;
+}
+
+.avatar--md {
+    width: 48px;
+    height: 48px;
+}
+
+.avatar--lg {
+    width: 64px;
+    height: 64px;
+    border-width: 3px;
+}
+
+/* Avatar no Header do Chat */
+.chat-header-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2.5px solid #c9a227;
+    box-shadow:
+        0 0 0 3px rgba(201, 162, 39, 0.2),
+        0 4px 12px rgba(26, 31, 61, 0.2);
+    flex-shrink: 0;
+}
+
+.chat-header-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+/* Avatar nas Mensagens */
+.message-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #c9a227;
+    box-shadow: 0 2px 6px rgba(26, 31, 61, 0.1);
+    flex-shrink: 0;
+}
+
+.message-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+/* Indicador de Status Online */
+.avatar-status {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid #1a1f3d;
+    z-index: 10;
+}
+
+.avatar-status--online {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    animation: statusPulse 2s ease-in-out infinite;
+}
+
+.avatar-status--away {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.avatar-status--offline {
+    background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);
+}
+
+@keyframes statusPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 4px rgba(34, 197, 94, 0);
+    }
+}
+
+/* Informações do Agente */
+.agent-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.agent-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: white;
+    line-height: 1.2;
+}
+
+.agent-status {
+    font-size: 0.75rem;
+    color: #c9a227;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.agent-status::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: #22c55e;
+    border-radius: 50%;
+    animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Perfil Completo do Agente (Header) */
+.agent-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Hover Effects */
+.avatar:hover {
+    transform: scale(1.05);
+    box-shadow:
+        0 0 0 4px rgba(201, 162, 39, 0.3),
+        0 4px 15px rgba(26, 31, 61, 0.25);
+}
+
+.chat-header-avatar:hover {
+    transform: scale(1.08);
+    border-color: #d4af37;
+}
+
+/* Badge de Verificação */
+.avatar-verified {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 18px;
+    height: 18px;
+    background: linear-gradient(135deg, #c9a227 0%, #d4af37 100%);
+    border-radius: 50%;
+    border: 2px solid #1a1f3d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-verified svg {
+    width: 10px;
+    height: 10px;
+    color: #1a1f3d;
+}
+
+/* Avatar com Anel Animado */
+.avatar-ring {
+    position: relative;
+}
+
+.avatar-ring::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: #c9a227;
+    animation: avatarRingSpin 3s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.avatar-ring:hover::before {
+    opacity: 1;
+}
+
+@keyframes avatarRingSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Card do Agente (versão expandida) */
+.agent-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: linear-gradient(135deg, #1a1f3d 0%, #2d3436 100%);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(26, 31, 61, 0.3);
+}
+
+.agent-card .avatar {
+    width: 72px;
+    height: 72px;
+    border-width: 3px;
+}
+
+.agent-card-info {
+    flex: 1;
+}
+
+.agent-card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 4px;
+}
+
+.agent-card-role {
+    font-size: 0.875rem;
+    color: #c9a227;
+    margin-bottom: 8px;
+}
+
+.agent-card-desc {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    line-height: 1.4;
+}

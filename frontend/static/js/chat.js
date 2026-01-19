@@ -123,7 +123,7 @@ class PropertyChatWidget {
 
     addMessage(content, sender) {
         const messageDiv = document.createElement('div');
-        messageDiv.className = 'flex items-start space-x-2 chat-message';
+        messageDiv.className = 'flex items-start space-x-3 chat-message';
 
         if (sender === 'user') {
             messageDiv.className += ' flex-row-reverse space-x-reverse';
@@ -139,8 +139,9 @@ class PropertyChatWidget {
             `;
         } else {
             messageDiv.innerHTML = `
-                <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-london-gold flex-shrink-0">
-                    <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=400&h=400&fit=crop&crop=face&facepad=2" alt="Sophie" class="w-full h-full object-cover">
+                <div class="message-avatar">
+                    <img src="/static/images/sophie-avatar.jpg"
+                         alt="Sophie">
                 </div>
                 <div class="bot-message rounded-2xl rounded-tl-none p-3 shadow-sm max-w-[80%]">
                     <p class="text-sm text-london-charcoal">${this.formatMessage(content)}</p>
@@ -155,10 +156,11 @@ class PropertyChatWidget {
     showTypingIndicator() {
         const typingDiv = document.createElement('div');
         typingDiv.id = 'typing-indicator';
-        typingDiv.className = 'flex items-start space-x-2';
+        typingDiv.className = 'flex items-start space-x-3';
         typingDiv.innerHTML = `
-            <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-london-gold flex-shrink-0">
-                <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=400&h=400&fit=crop&crop=face&facepad=2" alt="Sophie" class="w-full h-full object-cover">
+            <div class="message-avatar">
+                <img src="/static/images/sophie-avatar.jpg"
+                     alt="Sophie">
             </div>
             <div class="typing-indicator">
                 <span></span>
