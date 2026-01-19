@@ -162,69 +162,69 @@ app.add_middleware(
 )
 
 # Sistema de prompts para o agente
-SYSTEM_PROMPT = """Você é um agente imobiliário virtual profissional e elegante, especializado no mercado imobiliário de Londres.
-Seu nome é "London Property Assistant" e você trabalha para uma agência premium.
+SYSTEM_PROMPT = """You are a professional and elegant virtual estate agent, specialising in the London property market.
+Your name is "London Property Assistant" and you work for a premium agency.
 
-PERSONALIDADE:
-- Profissional, cordial e sofisticado
-- Conhecedor do mercado imobiliário londrino
-- Responde sempre em português brasileiro
-- Tom elegante mas acessível
+PERSONALITY:
+- Professional, courteous and sophisticated
+- Expert in the London property market
+- Always respond in British English
+- Elegant yet approachable tone
 
-OBJETIVO PRINCIPAL:
-Identificar a necessidade do cliente e capturar informações essenciais para qualificar o lead.
+MAIN OBJECTIVE:
+Identify the client's needs and capture essential information to qualify the lead.
 
-VOCÊ DEVE IDENTIFICAR:
-1. TIPO DE INTERESSE:
-   - COMPRAR: Cliente quer comprar um imóvel
-   - ALUGAR: Cliente quer alugar um imóvel
-   - VENDER (VALUATION): Cliente quer vender seu imóvel ou saber o valor
+YOU MUST IDENTIFY:
+1. TYPE OF INTEREST:
+   - BUY: Client wants to purchase a property
+   - RENT: Client wants to let a property
+   - SELL (VALUATION): Client wants to sell their property or get a valuation
 
-INFORMAÇÕES OBRIGATÓRIAS A CAPTURAR:
-1. Nome completo
-2. WhatsApp (número com DDD, ex: 11999998888)
-3. E-mail (deve ser um email válido)
-4. Orçamento em libras (£) - para compra/aluguel ou valor estimado para venda
-5. Código Postal (Postcode) de interesse ou do imóvel (formato UK: SW1A 1AA, E14 5AB, etc.)
+MANDATORY INFORMATION TO CAPTURE:
+1. Full name
+2. Mobile number (UK format, e.g., 07700900123)
+3. Email address (must be valid)
+4. Budget in pounds (£) - for purchase/rental or estimated value for sale
+5. Postcode of interest or property location (UK format: SW1A 1AA, E14 5AB, etc.)
 
-ESTRATÉGIA DE CONVERSA:
-1. Cumprimente calorosamente e pergunte como pode ajudar
-2. Identifique se o cliente quer COMPRAR, ALUGAR ou VENDER
-3. Capture as informações de forma natural e conversacional
-4. Forneça informações úteis sobre as áreas de Londres mencionadas
-5. Quando tiver TODAS as 5 informações, confirme os dados
+CONVERSATION STRATEGY:
+1. Greet warmly and ask how you can help
+2. Identify whether the client wants to BUY, RENT or SELL
+3. Capture information naturally through conversation
+4. Provide useful information about London areas mentioned
+5. When you have ALL 5 pieces of information, confirm the details
 
-ÁREAS DE LONDRES QUE VOCÊ CONHECE BEM:
+LONDON AREAS YOU KNOW WELL:
 - Central: Mayfair, Kensington, Chelsea, Westminster, Knightsbridge
-- Norte: Hampstead, Islington, Camden
-- Sul: Wimbledon, Richmond, Greenwich
-- Leste: Canary Wharf, Shoreditch, Stratford
-- Oeste: Notting Hill, Chiswick, Ealing
+- North: Hampstead, Islington, Camden
+- South: Wimbledon, Richmond, Greenwich
+- East: Canary Wharf, Shoreditch, Stratford
+- West: Notting Hill, Chiswick, Ealing
 
-FORMATO DE RESPOSTA ESPECIAL:
-Quando você tiver coletado TODAS as 5 informações obrigatórias (nome, whatsapp, email, orçamento, postcode),
-inclua no FINAL da sua resposta um bloco JSON no seguinte formato:
+SPECIAL RESPONSE FORMAT:
+When you have collected ALL 5 mandatory pieces of information (name, mobile, email, budget, postcode),
+include at the END of your response a JSON block in the following format:
 
 [LEAD_DATA]
 {
-    "nome": "Nome do Cliente",
-    "whatsapp": "11999998888",
-    "email": "email@exemplo.com",
-    "tipo_interesse": "comprar|alugar|vender",
-    "orcamento": "valor em £",
-    "postcode": "código postal",
-    "detalhes_adicionais": "resumo da conversa"
+    "nome": "Client Name",
+    "whatsapp": "07700900123",
+    "email": "email@example.com",
+    "tipo_interesse": "buy|rent|sell",
+    "orcamento": "value in £",
+    "postcode": "postcode",
+    "detalhes_adicionais": "conversation summary"
 }
 [/LEAD_DATA]
 
-IMPORTANTE:
-- Seja paciente e não peça todas as informações de uma vez
-- Faça perguntas naturais ao longo da conversa
-- Demonstre conhecimento sobre os bairros de Londres
-- Use £ para valores monetários
-- Postcodes em Londres seguem o formato: SW1A 1AA, E14 5AB, W1K 7AA, etc.
-- Valide se o email parece válido antes de incluir no JSON
-- Valide se o postcode segue o padrão UK
+IMPORTANT:
+- Be patient and don't ask for all information at once
+- Ask natural questions throughout the conversation
+- Demonstrate knowledge of London neighbourhoods
+- Use £ for monetary values
+- London postcodes follow the format: SW1A 1AA, E14 5AB, W1K 7AA, etc.
+- Validate the email appears valid before including in JSON
+- Validate the postcode follows UK format
 """
 
 async def call_gemini_api(messages: list) -> str:
@@ -420,7 +420,7 @@ async def health_check():
 # Painel Admin HTML
 ADMIN_HTML = """
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en-GB">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -462,10 +462,10 @@ ADMIN_HTML = """
                     </div>
                     <div>
                         <h1 class="font-serif text-xl font-semibold">London Property</h1>
-                        <p class="text-london-gold text-xs tracking-widest uppercase">Painel de Leads</p>
+                        <p class="text-london-gold text-xs tracking-widest uppercase">Leads Dashboard</p>
                     </div>
                 </div>
-                <a href="/" class="text-sm hover:text-london-gold transition-colors">← Voltar ao Site</a>
+                <a href="/" class="text-sm hover:text-london-gold transition-colors">← Back to Site</a>
             </div>
         </div>
     </header>
@@ -474,19 +474,19 @@ ADMIN_HTML = """
         <!-- Stats -->
         <div class="grid md:grid-cols-4 gap-6 mb-8">
             <div class="bg-white rounded-lg shadow-sm p-6">
-                <p class="text-london-slate text-sm">Total de Leads</p>
+                <p class="text-london-slate text-sm">Total Leads</p>
                 <p id="total-leads" class="font-serif text-3xl text-london-navy">-</p>
             </div>
             <div class="bg-white rounded-lg shadow-sm p-6">
-                <p class="text-london-slate text-sm">Compradores</p>
+                <p class="text-london-slate text-sm">Buyers</p>
                 <p id="total-comprar" class="font-serif text-3xl text-green-600">-</p>
             </div>
             <div class="bg-white rounded-lg shadow-sm p-6">
-                <p class="text-london-slate text-sm">Locatários</p>
+                <p class="text-london-slate text-sm">Tenants</p>
                 <p id="total-alugar" class="font-serif text-3xl text-blue-600">-</p>
             </div>
             <div class="bg-white rounded-lg shadow-sm p-6">
-                <p class="text-london-slate text-sm">Vendedores</p>
+                <p class="text-london-slate text-sm">Sellers</p>
                 <p id="total-vender" class="font-serif text-3xl text-purple-600">-</p>
             </div>
         </div>
@@ -495,9 +495,9 @@ ADMIN_HTML = """
         <div class="bg-white rounded-lg shadow-sm overflow-hidden">
             <div class="p-6 border-b border-gray-100">
                 <div class="flex justify-between items-center">
-                    <h2 class="font-serif text-xl text-london-charcoal">Leads Capturados</h2>
+                    <h2 class="font-serif text-xl text-london-charcoal">Captured Leads</h2>
                     <button onclick="loadLeads()" class="bg-london-navy text-white px-4 py-2 rounded text-sm hover:bg-london-charcoal transition-colors">
-                        Atualizar
+                        Refresh
                     </button>
                 </div>
             </div>
@@ -505,19 +505,19 @@ ADMIN_HTML = """
                 <table class="w-full">
                     <thead class="bg-london-cream">
                         <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-london-slate uppercase tracking-wider">Data</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-london-slate uppercase tracking-wider">Nome</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-london-slate uppercase tracking-wider">WhatsApp</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-london-slate uppercase tracking-wider">Date</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-london-slate uppercase tracking-wider">Name</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-london-slate uppercase tracking-wider">Mobile</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-london-slate uppercase tracking-wider">Email</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-london-slate uppercase tracking-wider">Interesse</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-london-slate uppercase tracking-wider">Orçamento</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-london-slate uppercase tracking-wider">Interest</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-london-slate uppercase tracking-wider">Budget</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-london-slate uppercase tracking-wider">Postcode</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-london-slate uppercase tracking-wider">Validação</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-london-slate uppercase tracking-wider">Validation</th>
                         </tr>
                     </thead>
                     <tbody id="leads-table" class="divide-y divide-gray-100">
                         <tr>
-                            <td colspan="8" class="px-6 py-8 text-center text-london-slate">Carregando...</td>
+                            <td colspan="8" class="px-6 py-8 text-center text-london-slate">Loading...</td>
                         </tr>
                     </tbody>
                 </table>
@@ -534,9 +534,9 @@ ADMIN_HTML = """
                 // Update stats
                 document.getElementById('total-leads').textContent = data.total;
 
-                const comprar = data.leads.filter(l => l.tipo_interesse?.toLowerCase().includes('comprar')).length;
-                const alugar = data.leads.filter(l => l.tipo_interesse?.toLowerCase().includes('alugar')).length;
-                const vender = data.leads.filter(l => l.tipo_interesse?.toLowerCase().includes('vender')).length;
+                const comprar = data.leads.filter(l => l.tipo_interesse?.toLowerCase().includes('buy')).length;
+                const alugar = data.leads.filter(l => l.tipo_interesse?.toLowerCase().includes('rent')).length;
+                const vender = data.leads.filter(l => l.tipo_interesse?.toLowerCase().includes('sell')).length;
 
                 document.getElementById('total-comprar').textContent = comprar;
                 document.getElementById('total-alugar').textContent = alugar;
@@ -546,7 +546,7 @@ ADMIN_HTML = """
                 const tbody = document.getElementById('leads-table');
 
                 if (data.leads.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="8" class="px-6 py-8 text-center text-london-slate">Nenhum lead capturado ainda</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="8" class="px-6 py-8 text-center text-london-slate">No leads captured yet</td></tr>';
                     return;
                 }
 
@@ -560,19 +560,20 @@ ADMIN_HTML = """
                     });
 
                     const interestColor = {
-                        'comprar': 'bg-green-100 text-green-800',
-                        'alugar': 'bg-blue-100 text-blue-800',
-                        'vender': 'bg-purple-100 text-purple-800'
+                        'buy': 'bg-green-100 text-green-800',
+                        'rent': 'bg-blue-100 text-blue-800',
+                        'sell': 'bg-purple-100 text-purple-800'
                     }[lead.tipo_interesse?.toLowerCase()] || 'bg-gray-100 text-gray-800';
 
                     const emailValid = lead.email_valido === 'Sim';
                     const postcodeValid = lead.postcode_valido === 'Sim';
 
-                    const whatsappMsg = encodeURIComponent(`Olá ${lead.nome}! Tudo bem? Vi que você tem interesse em ${lead.tipo_interesse || 'imóveis'} na região de ${lead.postcode || 'Londres'}. Sou da equipe de atendimento e gostaria de ajudá-lo. Podemos conversar?`);
-                    const whatsappLink = lead.whatsapp ? `<a href="https://wa.me/55${lead.whatsapp.replace(/\\D/g,'')}?text=${whatsappMsg}" target="_blank" class="text-green-600 hover:underline">${lead.whatsapp}</a>` : '-';
+                    const interestText = {'buy': 'buying', 'rent': 'renting', 'sell': 'selling'}[lead.tipo_interesse?.toLowerCase()] || 'property';
+                    const whatsappMsg = encodeURIComponent(`Hello ${lead.nome}! I hope you're well. I noticed you're interested in ${interestText} in the ${lead.postcode || 'London'} area. I'm from the property team and would love to assist you. Would you be available for a quick chat?`);
+                    const whatsappLink = lead.whatsapp ? `<a href="https://wa.me/44${lead.whatsapp.replace(/\\D/g,'').replace(/^0/,'')}" target="_blank" class="text-green-600 hover:underline">${lead.whatsapp}</a>` : '-';
 
-                    const emailSubject = encodeURIComponent(`Seu interesse em ${lead.tipo_interesse || 'imóveis'} - London Property`);
-                    const emailBody = encodeURIComponent(`Olá ${lead.nome},\n\nTudo bem?\n\nVi que você demonstrou interesse em ${lead.tipo_interesse || 'imóveis'} na região de ${lead.postcode || 'Londres'} com orçamento de ${lead.orcamento || 'a definir'}.\n\nGostaria de agendar uma conversa para entender melhor suas necessidades e apresentar as melhores opções.\n\nQuando seria um bom momento para conversarmos?\n\nAtenciosamente,\nEquipe London Property`);
+                    const emailSubject = encodeURIComponent(`Your ${interestText} enquiry - London Property`);
+                    const emailBody = encodeURIComponent(`Dear ${lead.nome},\n\nI hope this email finds you well.\n\nI noticed you expressed interest in ${interestText} in the ${lead.postcode || 'London'} area with a budget of ${lead.orcamento || 'to be confirmed'}.\n\nI would be delighted to arrange a call to discuss your requirements and present our best options.\n\nWhen would be a convenient time for a chat?\n\nKind regards,\nLondon Property Team`);
                     const emailLink = lead.email ? `<a href="mailto:${lead.email}?subject=${emailSubject}&body=${emailBody}" class="text-red-600 hover:underline">${lead.email}</a>` : '-';
 
                     return `
