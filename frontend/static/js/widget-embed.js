@@ -118,11 +118,11 @@
         }
 
         #lpa-chat-header-icon {
-            width: 56px;
-            height: 56px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             overflow: hidden;
-            border: 2px solid ${config.accentColor};
+            border: 3px solid ${config.accentColor};
             flex-shrink: 0;
         }
 
@@ -194,8 +194,8 @@
         }
 
         .lpa-message-avatar {
-            width: 40px;
-            height: 40px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             display: flex;
             align-items: center;
