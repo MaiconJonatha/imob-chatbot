@@ -640,6 +640,18 @@ async def serve_landing():
     return FileResponse(frontend_path / "templates" / "landing.html")
 
 
+@app.get("/terms")
+async def serve_terms():
+    """Serve the Terms of Service page"""
+    return FileResponse(frontend_path / "templates" / "terms.html")
+
+
+@app.get("/privacy")
+async def serve_privacy():
+    """Serve the Privacy Policy page"""
+    return FileResponse(frontend_path / "templates" / "privacy.html")
+
+
 if __name__ == "__main__":
     import uvicorn
     port = int(os.environ.get("PORT", 8000))
